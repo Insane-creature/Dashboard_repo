@@ -4,6 +4,9 @@ import plotly.express as px
 
 st.set_page_config(page_title="Kitchen Level P&L Dashboard", layout="wide")
 
+import os
+st.write("Files in app directory:", os.listdir())
+
 # Load and clean data
 @st.cache_data
 def load_data():
