@@ -10,21 +10,25 @@ st.write("Files in app directory:", os.listdir())
 # Load and clean data
 @st.cache_data
 def load_data():
-    df = pd.read_excel("KitchenPNLData.xlsx", header=1)  # or header=0 to test
-    st.write("🧾 Original Columns:", df.columns.tolist())  # show real names
-    
-    # Clean the column names
-    df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
-    st.write("📦 Cleaned Columns:", df.columns.tolist())  # confirm after cleanup
+    # Read from row 2 (index=1), which has actual column names
+    df = pd.read_excel("KitchenPNLData.xlsx", header=1)
 
-    # Check if 'MONTH' exists after cleanup
-    if 'MONTH' not in df.columns:
-        st.error("❌ 'MONTH' column not found after cleaning.")
+    # Clean column names
+    df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
+
+    # Debug output: show columns
+    st.write("📋 Columns after cleaning:", df.columns.tolist())
+
+    # Ensure 'MONTH' column exists
+    if "MONTH" not in df.columns:
+        st.error("❌ 'MONTH' column is missing. Found columns: " + ", ".join(df.columns))
         st.stop()
-    
-    # Now convert
-    df['MONTH'] = pd.to_datetime(df['MONTH'], errors='coerce').dt.strftime('%b %Y')
+
+    # Format MONTH column
+    df["MONTH"] = pd.to_datetime(df["MONTH"], errors='coerce').dt.strftime('%b %Y')
+
     return df
+
 
 
 df = load_data()
