@@ -7,7 +7,7 @@ st.set_page_config(page_title="Kitchen Level P&L Dashboard", layout="wide")
 # Load and clean data
 @st.cache_data
 def load_data():
-    df = pd.read_excel("KitchenPNLData.xlsx", header=1)
+    df = pd.read_excel("KitchenPNLData.xlsx")
     df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
     df['MONTH'] = pd.to_datetime(df['MONTH'], errors='coerce').dt.strftime('%b %Y')
     return df
