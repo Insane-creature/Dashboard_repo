@@ -11,7 +11,7 @@ st.write("Files in app directory:", os.listdir())
 @st.cache_data
 def load_data():
     # Read from row 2 (index=1), which has actual column names
-    df = pd.read_excel("Kitchen_PNL_Data1.xlsx", header=1)
+    df = pd.read_excel("Kitchen_PNL_Data1.xlsx", header=0)
 
     # Clean column names
     df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
