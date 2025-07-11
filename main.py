@@ -4,8 +4,8 @@ import plotly.express as px
 
 st.set_page_config(page_title="Kitchen Level P&L Dashboard", layout="wide")
 
-import os
-st.write("Files in app directory:", os.listdir())
+# import os
+# st.write("Files in app directory:", os.listdir())
 
 # Load and clean data
 @st.cache_data
@@ -14,7 +14,7 @@ def load_data():
     df = pd.read_excel("Kitchen_PNL_Data1.xlsx", header=0)
 
     # Clean column names
-    df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
+    # df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
 
     # Debug output: show columns
     st.write("📋 Columns after cleaning:", df.columns.tolist())
