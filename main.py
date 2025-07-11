@@ -14,10 +14,10 @@ def load_data():
     df = pd.read_excel("Kitchen_PNL_Data1.xlsx", header=0)
 
     # Clean column names
-    # df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
+    df.columns = df.columns.str.strip().str.upper().str.replace(" ", "_")
 
     # Debug output: show columns
-    st.write("📋 Columns after cleaning:", df.columns.tolist())
+    # st.write("📋 Columns after cleaning:", df.columns.tolist())
 
     # Ensure 'MONTH' column exists
     if "MONTH" not in df.columns:
